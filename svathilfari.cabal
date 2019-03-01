@@ -1,0 +1,44 @@
+name:                 svathilfari
+version:              0.0.1.0
+cabal-version:        1.18
+tested-with:          GHC==7.10.3, GHC==8.0.2, GHC==8.2.2, GHC==8.4.4, GHC==8.6.3
+license:              BSD3
+license-file:         LICENSE.md
+homepage:             https://github.com/xc-jp/redis-worker
+bug-reports:          https://github.com/xc-jp/redis-worker/issues
+category:             Categories
+synopsis:             Monitor Reddis queue and run jobs obtained from there
+build-type:           Simple
+description:          Monitor Reddis queue and run jobs obtained from there.
+extra-doc-files:      CHANGELOG.md
+                    , README.md
+
+source-repository head
+  type:               git
+  location:           https://github.com/xc-jp/redis-worker.git
+
+flag dev
+  description:        Turn on development settings.
+  manual:             True
+  default:            False
+
+library
+  build-depends:      base             >= 4.8 && < 5.0
+                    , bytestring       >= 0.2 && < 0.11
+                    , hedis            >= 0.10 && < 1.0
+                    , mtl              >= 2.0 && < 3.0
+                    , stm              >= 2.5 && < 2.6
+                    , unliftio         >= 0.2.1 && < 0.3
+                    , unliftio-core    >= 0.1.1 && < 3.0
+  exposed-modules:    Database.Redis.Worker
+                    , Database.Redis.Worker.Config
+                    , Database.Redis.Worker.Job
+  if flag(dev)
+    ghc-options:      -Wall -Werror -Wcompat
+                      -Wincomplete-record-updates
+                      -Wincomplete-uni-patterns
+                      -Wnoncanonical-monad-instances
+                      -Wnoncanonical-monadfail-instances
+  else
+    ghc-options:      -Wall
+  default-language:   Haskell2010
