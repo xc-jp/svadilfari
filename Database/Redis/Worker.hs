@@ -78,7 +78,7 @@ schedulingThread cfg jobChannel = forever $ do
       liftIO . cfgFailureHandler cfg . FailedToRead $ err
     Right Nothing -> return ()
     Right (Just (name, bs)) ->
-      case decodeJob name bs of
+      case decodeJob bs of
         Left err ->
           liftIO . cfgFailureHandler cfg $ FailedToDecode name err
         Right job ->

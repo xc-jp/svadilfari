@@ -25,7 +25,4 @@ class Job a where
 
   -- | Decode a job.
 
-  decodeJob
-    :: ByteString               -- ^ Queue name
-    -> ByteString               -- ^ Job body
-    -> Either String a
+  decodeJob :: ByteString -> Either String a
