@@ -1,6 +1,6 @@
 -- |
 -- Module      :  Database.Redis.Worker
--- Copyright   :  © 2019 XCompass
+-- Copyright   :  © 2019 Cross Compass Ltd.
 -- License     :  BSD 3 clause
 --
 -- Maintainer  :  Mark Karpov <markkarpov92@gmail.com>
