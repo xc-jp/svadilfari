@@ -9,6 +9,6 @@ runs jobs on query items concurrently.
 
 ## License
 
-Copyright © 2019 XCompass
+Copyright © 2019 Cross Compass Ltd.
 
 Distributed under BSD 3 clause license.
