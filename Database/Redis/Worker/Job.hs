@@ -26,3 +26,7 @@ class Job a where
   -- | Decode a job.
 
   decodeJob :: ByteString -> Either String a
+
+  -- | Encode a job.
+
+  encodeJob :: a -> ByteString

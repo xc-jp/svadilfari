@@ -29,12 +29,15 @@ module Database.Redis.Worker
   , Job (..)
     -- * Runnig workers
   , runWorkers
+    -- * Running redis queries
   , liftRedis
+  , lpushJob
   )
 where
 
 import Control.Monad.IO.Unlift (MonadUnliftIO)
 import Control.Monad.Reader
+import Data.ByteString (ByteString)
 import Data.Foldable (sequenceA_)
 import Database.Redis (Redis)
 import Database.Redis.Worker.Config
@@ -116,3 +119,13 @@ liftRedis
 liftRedis m = do
   conn <- ask
   liftIO (Redis.runRedis conn m)
+
+-- | Push a job to a queue using 'Redis.lpush'.
+
+lpushJob
+  :: (MonadIO m, Job job)
+  => ByteString                 -- ^ Queue where to push the job
+  -> job                        -- ^ Job to push
+  -> WorkerT m ()
+lpushJob key job = liftRedis . void $
+  Redis.lpush key [encodeJob job]
